@@ -1,0 +1,4 @@
+REGEDIT4
+;Decreases the delay of showing menus from 400 to 100 milliseconds
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"MenuShowDelay"="100"

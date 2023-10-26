@@ -1,0 +1,7 @@
+REGEDIT4
+;Lowers the time the system waits for user processes to end. 
+;Forces user processes to end automatically when the user logs off or shuts down
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"AutoEndTasks"="1"
+"HungAppTimeout"="2000"
+"WaitToKillAppTimeout"="2000"

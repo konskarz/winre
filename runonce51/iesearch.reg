@@ -1,0 +1,7 @@
+REGEDIT4
+;Change the default search page to Google
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+"Search Page"="http://www.google.com"
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\SearchUrl]
+@="http://www.google.com/keyword/%s"
+"provider"="gogl"

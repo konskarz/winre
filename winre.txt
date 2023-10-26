@@ -1,0 +1,54 @@
+Windows Recovery System
+
+Reference system requirements
+	Original source based: e.g. MS-ISO, Factory image etc.
+	With all drivers and updates onboard
+	Activated
+	Offline installable 
+
+Backup system
+	Existing backup system, e.g. Lenovo OneKey Recovery(multipartition)
+	Windows 10 - dism based, boot into WinRe
+	Windows 7-8 - wimlib-dism based, boot into WinRe[F8]
+	Windows Vista - wimlib based, boot into WinRe[F8]
+	Windows XP - wimlib based, boot into BartPE
+
+Partitions
+	More then one system partitions if a multipartition backup system allready exists
+	One system partition to make sure that the backup contains boot files
+
+Notes
+	Elevated permissions are required to run all scripts
+	Create the Depot root folder on any non-system drive or change the _pathname variable in defines
+	Boot into WinRE: Start Menu > Power > [Shift + Restart]
+		> Troubleshoot > Advanced options > Command Prompt
+	There is no way to restore Windows 10 activation status offline
+	
+Use case: install Windows 10 without CD/DVD or USB drive
+	w10mct - Windows 10 media creation tool [download and mount Windows.iso]
+	expimg - Export Push-Button Reset Image from Windows.iso
+	Boot into WinRE
+	img2dir - Apply Push-Button Reset Image to the system partition
+		[create BCD store] if one system partition is used
+		
+Use case: activate, update, backup, customise Windows 10
+	Control Panel > System [Windows + Pause]: Activate
+	Settings [Windows + I] > Update & security > Windows Update: Update
+	Boot into WinRE
+	dir2img - Capture system partition to the Push-Button Reset Image
+	Exit and continue
+	runonce - Import registry files(*.reg) and run batch files(*.bat) in directories:
+		runonce - all, runonce100 - Windows 10, runonce62 - Windows 8 etc.
+		add additional directory to process as a command line parameter
+	
+Use case: customise Push-Button Reset Image
+	img2vhd - Convert Push-Button Reset Image to Virtual Hard Disk
+	bcd4vhd - Add Virtual Hard Disk to the Boot Menu
+	Reboot to Virtual Hard Disk
+	getdrv [install drivers] - Download and install drivers
+	getupd [install updates] - Download and install updates
+		reboot, repeat until "There are no applicable updates"
+	Reboot to Hard Disk
+	bcd4vhd - Remove Virtual Hard Disk from the Boot Menu
+	add2img - Add drivers and updates to the Push-Button Reset Image
+	

@@ -1,0 +1,4 @@
+REGEDIT4
+;Change the default home page to blank
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+"Start Page"="about:blank"
